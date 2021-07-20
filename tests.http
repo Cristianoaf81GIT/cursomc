@@ -1,0 +1,9 @@
+@BASEURL=http://localhost:8080
+
+
+
+### Categorias ###
+### GET
+GET {{BASEURL}}/categorias
+
+##################
