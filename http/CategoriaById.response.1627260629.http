@@ -1,0 +1,6 @@
+HTTP/1.1 200 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Mon, 26 Jul 2021 00:50:29 GMT
+
+{"id":1,"nome":"Informática","produtos":[{"id":1,"nome":"Computador","preco":2000.0},{"id":2,"nome":"Impressora","preco":800.0},{"id":3,"nome":"Mouse","preco":80.0}]}
