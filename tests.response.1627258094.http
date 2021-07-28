@@ -1,6 +1,0 @@
-HTTP/1.1 200 
-Content-Type: application/json
-Transfer-Encoding: chunked
-Date: Mon, 26 Jul 2021 00:08:14 GMT
-
-[{"id":1,"nome":"informática","produtos":[]},{"id":2,"nome":"Escritório","produtos":[]}]
