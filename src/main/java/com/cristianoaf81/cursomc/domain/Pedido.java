@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class Pedido implements Serializable {
@@ -22,16 +26,31 @@ public class Pedido implements Serializable {
     @Id 
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Integer id;
+    /** formata a data */
+    @JsonFormat( pattern = "dd/MM/yyyy HH:mm" )
     private Date instante;
+    /**
+     * nesse caso um pedido conhece e serializa
+     * um pagamento, mas o pagamento que também 
+     * conhece um pedido não irá serializar
+     */
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy="pedido")
     private Pagamento pagamento;
-    @ManyToOne 
+    /**
+     * o(s) cliente(s) de um pedido serão
+     * serializados normalmente
+     * obs: nesse caso para funcionar deve-se
+     * especificar o FetchType.EAGER
+     */
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name="cliente_id")
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "endereco_de_entrega_id")
     private Endereco enderecoDeEntrega;
-    @OneToMany(mappedBy = "id.pedido") 
+    @OneToMany(mappedBy = "id.pedido",fetch = FetchType.EAGER) 
     private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {}

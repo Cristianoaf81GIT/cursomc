@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.cristianoaf81.cursomc.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -35,6 +36,12 @@ public class Cliente implements Serializable {
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
+	/**
+	 * os pedidos não serão serializados no cliente
+	 * tmb é possivel usar o @JsonIgnore no metodo 
+	 * pedidos como alternativa
+	 */
+	@JsonBackReference
 	@OneToMany(mappedBy = "cliente") 
     private List<Pedido> pedidos = new ArrayList<>();
 	
