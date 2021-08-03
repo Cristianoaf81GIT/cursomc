@@ -17,8 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.cristianoaf81.cursomc.domain.enums.TipoCliente;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente implements Serializable {
@@ -30,7 +31,7 @@ public class Cliente implements Serializable {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	@JsonManagedReference 
+	//@JsonManagedReference 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
 	private List<Endereco> enderecos = new ArrayList<>();
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -41,7 +42,7 @@ public class Cliente implements Serializable {
 	 * tmb é possivel usar o @JsonIgnore no metodo 
 	 * pedidos como alternativa
 	 */
-	@JsonBackReference
+	@JsonIgnore 
 	@OneToMany(mappedBy = "cliente") 
     private List<Pedido> pedidos = new ArrayList<>();
 	

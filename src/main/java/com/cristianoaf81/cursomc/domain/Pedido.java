@@ -17,7 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
@@ -34,7 +35,7 @@ public class Pedido implements Serializable {
      * um pagamento, mas o pagamento que também 
      * conhece um pedido não irá serializar
      */
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy="pedido")
     private Pagamento pagamento;
     /**
@@ -43,7 +44,7 @@ public class Pedido implements Serializable {
      * obs: nesse caso para funcionar deve-se
      * especificar o FetchType.EAGER
      */
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name="cliente_id")
     private Cliente cliente;
