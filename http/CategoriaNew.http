@@ -1,0 +1,8 @@
+POST http://localhost:8080/categorias HTTP/1.1
+Host: localhost:8080
+Content-Length: 37
+Content-Type: application/json
+
+{
+    "nome": "Cama mesa e banho"
+}
