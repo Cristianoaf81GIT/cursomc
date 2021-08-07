@@ -18,7 +18,7 @@ public class PedidoService {
     @Autowired
     private PedidoRepository repository;
     
-    public Pedido buscar(Integer id) {
+    public Pedido find(Integer id) {
         Optional<Pedido> opt = repository.findById(id);
         if (opt.isEmpty()) {
             errorMessage = String.format(errorMessage, id, resourceName);

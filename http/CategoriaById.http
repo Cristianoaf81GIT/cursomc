@@ -1,2 +1,2 @@
-GET http://localhost:8080/categorias/3 HTTP/1.1
+GET http://localhost:8080/categorias/1 HTTP/1.1
 Host: localhost:8080
