@@ -1,5 +1,6 @@
 package com.cristianoaf81.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -44,16 +45,14 @@ public class CategoriaService {
 
     public void delete(Integer id) {
 		find(id);
-		// Categoria cat = find(id);
-		// if (cat.getProdutos().size() > 0 ){
-		// 	throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos associados");
-		// } else {
-		// 	repo.deleteById(id);
-		// }
 		try {
 			repo.deleteById(id);
 		}catch( DataIntegrityViolationException | ConstraintViolationException  e ) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos associados");
 		}
+    }
+
+    public List<Categoria> findAll() {
+        return repo.findAll();
     }
 }

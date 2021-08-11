@@ -3,6 +3,8 @@ package com.cristianoaf81.cursomc.resources;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.cristianoaf81.cursomc.domain.Categoria;
+import com.cristianoaf81.cursomc.dto.CategoriaDTO;
 import com.cristianoaf81.cursomc.services.CategoriaService;
 
 
@@ -24,17 +27,7 @@ public class CategoriaResource {
 	
 	@Autowired
 	private CategoriaService service;
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Categoria>> listar() {
-		Categoria cat1 = new Categoria(1, "informática");
-		Categoria cat2 = new Categoria(2, "Escritório");
-		List<Categoria> lista = new ArrayList<>();
-		lista.add(cat1);
-		lista.add(cat2);
-		return new ResponseEntity<>(lista, HttpStatus.OK);
-	}
-	
+			
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable(value = "id") Integer id) {
 		Categoria cat = service.find(id);		
@@ -63,6 +56,16 @@ public class CategoriaResource {
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAll() {
+        List<Categoria> list = service.findAll();
+        List<CategoriaDTO> listDTO = list
+            .stream()
+            .map(obj -> new CategoriaDTO(obj))
+            .collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
 
 }
