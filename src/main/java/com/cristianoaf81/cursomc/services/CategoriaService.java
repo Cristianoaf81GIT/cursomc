@@ -4,16 +4,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
-
 import com.cristianoaf81.cursomc.domain.Categoria;
 import com.cristianoaf81.cursomc.repositories.CategoriaRepository;
 import com.cristianoaf81.cursomc.services.exceptions.DataIntegrityException;
 import com.cristianoaf81.cursomc.services.exceptions.ObjectNotFoundException;
+
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CategoriaService {
@@ -55,4 +57,9 @@ public class CategoriaService {
     public List<Categoria> findAll() {
         return repo.findAll();
     }
+
+		public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+			 PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+			 return repo.findAll(pageRequest);
+		}
 }
