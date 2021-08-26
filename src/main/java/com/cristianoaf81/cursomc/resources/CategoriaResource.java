@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import com.cristianoaf81.cursomc.domain.Categoria;
 import com.cristianoaf81.cursomc.dto.CategoriaDTO;
 import com.cristianoaf81.cursomc.services.CategoriaService;
@@ -33,14 +35,16 @@ public class CategoriaResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody Categoria obj) {
+    public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDTO) {
+        Categoria obj = service.fromDto(objDTO);
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
+    public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDTO, @PathVariable Integer id) {
+        Categoria obj = service.fromDto(objDTO);
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
@@ -60,11 +64,10 @@ public class CategoriaResource {
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public ResponseEntity<Page<CategoriaDTO>> findPage(
-            @RequestParam( value = "page", defaultValue="0") Integer page, 
-            @RequestParam( value = "linesPerPage", defaultValue="24") Integer linesPerPage, 
-            @RequestParam( value = "orderBy", defaultValue="nome") String orderBy,
-            @RequestParam( value = "direction", defaultValue="ASC") String direction) {
+    public ResponseEntity<Page<CategoriaDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
         Page<Categoria> list = service.findPage(page, linesPerPage, orderBy, direction.toUpperCase());
         Page<CategoriaDTO> listDTO = list.map(obj -> new CategoriaDTO(obj));
         return ResponseEntity.ok().body(listDTO);
