@@ -15,28 +15,28 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) 
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id 
+    @Id
     private Integer id;
     private Integer estado;
     /**
-     * um pagamento conhece um pedido mas não
-     * irá serializá-lo.
+     * um pagamento conhece um pedido mas não irá serializá-lo.
      */
-    //@JsonBackReference
+    // @JsonBackReference
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name="pedido_id")
+    @JoinColumn(name = "pedido_id")
     @MapsId
     private Pedido pedido;
-    
-    public Pagamento() {}
+
+    public Pagamento() {
+    }
 
     public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
         this.id = id;
-        this.estado = estado.getCod();
+        this.estado = (estado == null) ? null : estado.getCod();
         this.pedido = pedido;
     }
 
@@ -89,5 +89,4 @@ public abstract class Pagamento implements Serializable {
         return true;
     }
 
-    
 }
