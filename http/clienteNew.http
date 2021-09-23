@@ -1,0 +1,20 @@
+@URL=http://localhost:8080
+
+
+###
+POST {{URL}}/clientes
+Content-Type: application/json
+
+{
+  "nome": "Joao silva lima",
+  "email": "Joaosilva@email.com",
+  "cpfOuCnpj": "099876543210",
+  "tipo": 1,
+  "telefone1": "999987644",
+  "telefone2": "9283737362",
+  "logradouro": "rua das bromelias",
+  "numero": "343",
+  "complemento": "Apto 302",
+  "cep": "37530000",
+  "cidadeId": 2
+}
