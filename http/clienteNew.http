@@ -6,9 +6,9 @@ POST {{URL}}/clientes
 Content-Type: application/json
 
 {
-  "nome": "Joao silva lima",
-  "email": "Joaosilva@email.com",
-  "cpfOuCnpj": "099876543210",
+  "nome": "Carin abdul",
+  "email": "carinab@email.com",
+  "cpfOuCnpj": "41852535000178",
   "tipo": 1,
   "telefone1": "999987644",
   "telefone2": "9283737362",
