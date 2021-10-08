@@ -8,8 +8,8 @@ Content-Type: application/json
 {
   "nome": "Carin abdul",
   "email": "carinab@email.com",
-  "cpfOuCnpj": "41852535000178",
-  "tipo": 1,
+  "cpfOuCnpj": "41852535000178Xssdw",
+  "tipo": 2,
   "telefone1": "999987644",
   "telefone2": "9283737362",
   "logradouro": "rua das bromelias",
