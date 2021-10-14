@@ -6,15 +6,15 @@ POST {{URL}}/clientes
 Content-Type: application/json
 
 {
-  "nome": "Carin abdul",
-  "email": "carinab@email.com",
-  "cpfOuCnpj": "41852535000178Xssdw",
-  "tipo": 2,
-  "telefone1": "999987644",
-  "telefone2": "9283737362",
-  "logradouro": "rua das bromelias",
-  "numero": "343",
-  "complemento": "Apto 302",
+  "nome": "Carin abdul lima",
+  "email": "carinabdullima@email.com",
+  "cpfOuCnpj": "52639890085",
+  "tipo": 1,
+  "telefone1": "999987640",
+  "telefone2": "9283737361",
+  "logradouro": "rua das cameliad",
+  "numero": "340",
+  "complemento": "Apto 12",
   "cep": "37530000",
   "cidadeId": 2
 }

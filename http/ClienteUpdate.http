@@ -1,0 +1,11 @@
+@URL=http://localhost:8080
+
+
+###
+PUT {{URL}}/clientes/162
+Content-Type: application/json
+
+{
+  "nome": "carin abdul lima santos",
+  "email": "maria@yahoo.com"
+}
