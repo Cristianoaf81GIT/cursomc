@@ -1,0 +1,2 @@
+GET http://localhost:8080/produtos?nome=or&categorias=1,4 HTTP/1.1
+Host: localhost:8080
