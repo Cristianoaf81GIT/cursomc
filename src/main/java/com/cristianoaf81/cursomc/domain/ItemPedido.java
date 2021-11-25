@@ -12,17 +12,17 @@ public class ItemPedido implements Serializable {
 
     private static long serialVersionUID = 1L;
     /**
-     * Neste relacionamento itemPedido/pagamento
-     * o ItemPedidoPK não será serializado
+     * Neste relacionamento itemPedido/pagamento o ItemPedidoPK não será serializado
      */
     @JsonIgnore
-    @EmbeddedId 
+    @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
     private Double desconto;
     private Integer quantidade;
     private Double preco;
 
-    public ItemPedido() {}
+    public ItemPedido() {
+    }
 
     public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
         id.setPedido(pedido);
@@ -30,6 +30,10 @@ public class ItemPedido implements Serializable {
         this.desconto = desconto;
         this.quantidade = quantidade;
         this.preco = preco;
+    }
+
+    public double getSubtotal() {
+        return (preco - desconto) * quantidade;
     }
 
     public ItemPedidoPK getId() {
@@ -65,16 +69,15 @@ public class ItemPedido implements Serializable {
     }
 
     /**
-     * Deve-se ignorar também
-     * pois está relacionado a chave
-     * primaria composta
+     * Deve-se ignorar também pois está relacionado a chave primaria composta
+     * 
      * @return Pedido
      */
     @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
-  
+
     public Produto getProduto() {
         return id.getProduto();
     }
@@ -103,9 +106,5 @@ public class ItemPedido implements Serializable {
             return false;
         return true;
     }
-
-
-    
-
 
 }
