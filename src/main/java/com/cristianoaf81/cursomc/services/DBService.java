@@ -101,7 +101,8 @@ public class DBService {
     est2.getCidades().addAll(Arrays.asList(c2, c3));
 
     // clientes
-    Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+    // nota usar email válido se for testar envio de email
+    Cliente cli1 = new Cliente(null, "Maria Silva", "mariazinha@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
     cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
     // enderecos
     Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "38220834", cli1, c1);
