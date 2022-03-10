@@ -7,6 +7,7 @@ import java.util.List;
 import java.text.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.cristianoaf81.cursomc.domain.Categoria;
 import com.cristianoaf81.cursomc.domain.Cidade;
@@ -52,6 +53,8 @@ public class DBService {
   private PagamentoRepository pagamentoRepository;
   @Autowired
   private ItemPedidoRepository itemPedidoRepository;
+  @Autowired
+  private BCryptPasswordEncoder pe;
 
   public void instantiateTestDatabase() throws ParseException {
     Categoria cat1 = new Categoria(null, "Informática");
@@ -102,7 +105,8 @@ public class DBService {
 
     // clientes
     // nota usar email válido se for testar envio de email
-    Cliente cli1 = new Cliente(null, "Maria Silva", "mariazinha@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+    Cliente cli1 = new Cliente(null, "Maria Silva", "mariazinha@gmail.com", "36378912377", TipoCliente.PESSOAFISICA,
+        pe.encode("123"));
     cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
     // enderecos
     Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "38220834", cli1, c1);
