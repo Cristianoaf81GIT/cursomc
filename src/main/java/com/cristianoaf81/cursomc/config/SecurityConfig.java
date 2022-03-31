@@ -2,6 +2,9 @@ package com.cristianoaf81.cursomc.config;
 
 import java.util.Arrays;
 
+import com.cristianoaf81.cursomc.security.JWTUtil;
+import com.cristianoaf81.cursomc.security.JwtAuthenticationFilter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +21,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+// https://github.com/acenelio/springboot2-ionic-backend/blob/beed651977f7dc0c4cd2b19196622f4d595c003a/src/main/java/com/nelioalves/cursomc/security/JWTAuthenticationFilter.java
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private UserDetailsService userDetailsService;
+
+  @Autowired
+  private JWTUtil jwtUtil;
 
   private static final String[] PUBLIC_MATCHERS = {
       "/h2-console/**",
@@ -50,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
         .antMatchers(PUBLIC_MATCHERS).permitAll()
         .anyRequest().authenticated();
+    http.addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil));
     // importante ao desativar csrf garantir que a aplicação não armazene sessão
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }

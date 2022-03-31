@@ -13,6 +13,9 @@ public class CredenciaisDTO implements Serializable {
     this.senha = senha;
   }
 
+  public CredenciaisDTO() {
+  }
+
   public String getEmail() {
     return this.email;
   }
