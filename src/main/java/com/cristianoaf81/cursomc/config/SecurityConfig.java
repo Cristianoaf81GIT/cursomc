@@ -2,6 +2,7 @@ package com.cristianoaf81.cursomc.config;
 
 import java.util.Arrays;
 
+import com.cristianoaf81.cursomc.security.JWTAuthorizationFilter;
 import com.cristianoaf81.cursomc.security.JWTUtil;
 import com.cristianoaf81.cursomc.security.JwtAuthenticationFilter;
 
@@ -58,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(PUBLIC_MATCHERS).permitAll()
         .anyRequest().authenticated();
     http.addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil));
+    http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
     // importante ao desativar csrf garantir que a aplicação não armazene sessão
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
