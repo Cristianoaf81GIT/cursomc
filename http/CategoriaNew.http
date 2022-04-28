@@ -2,7 +2,8 @@ POST http://localhost:8081/categorias HTTP/1.1
 Host: localhost:8081
 Content-Length: 37
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZWlkZWNvc3RhQGdtYWlsLmNvbSIsImV4cCI6MTY1MTE0MjQ2N30.FRCd5t4pRvnzUcpFGTR3XXvCLfUrr7I8Ug7cm-Y4ldJm4Utgp1AD05lUumjXrqOb2B3Cw1OEBohQezy8JoziMQ
 
 {
-    "nome": "Utilidades-domésticas"
+    "nome": "lalala"
 }
