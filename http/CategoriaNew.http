@@ -1,9 +1,8 @@
 POST http://localhost:8081/categorias HTTP/1.1
 Host: localhost:8081
-Content-Length: 37
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZWlkZWNvc3RhQGdtYWlsLmNvbSIsImV4cCI6MTY1MTE0MjQ2N30.FRCd5t4pRvnzUcpFGTR3XXvCLfUrr7I8Ug7cm-Y4ldJm4Utgp1AD05lUumjXrqOb2B3Cw1OEBohQezy8JoziMQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYXppbmhhQGdtYWlsLmNvbSIsImV4cCI6MTY1MTE0MjczN30.ii4dIRJTkii_ZNWONG_UZ44dw97AebuzAxUPuBHJhDoxamaPEOovJfoIw8cXDb7j6rxScuSOU_Jx9Aj_IHv_tw
 
 {
-    "nome": "lalala"
+    "nome": "lalala1"
 }
