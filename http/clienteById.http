@@ -1,6 +1,7 @@
 ###
 GET http://localhost:8081/clientes HTTP/1.1
 Host: localhost:8081
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZWlkZWNvc3RhQGdtYWlsLmNvbSIsImV4cCI6MTY1MTk1MjUwMn0.AcrovYt6g_TvgqM13xdMvzMcETK5VVpcd237iN9Lcetyu1rxZj-XJnjdVU51X5cD-iG6EoE6behNOa6QlHjjGw
 
 ###
 GET http://localhost:8081/clientes/page HTTP/1.1
@@ -9,6 +10,8 @@ Host: localhost:8081
 ###
 GET http://localhost:8081/clientes/1 HTTP/1.1
 Host: localhost:8081
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpYXppbmhhQGdtYWlsLmNvbSIsImV4cCI6MTY1MTk1MjkzM30.TN3BsqxB59ILg5Gc8gtofxKgaWjSNPAjSvOLovBVc0LywUMh9ReYQW0AMrusBhqTo-ghSrGsTfEXQkpnm5cvYw
+
 
 
 ###
