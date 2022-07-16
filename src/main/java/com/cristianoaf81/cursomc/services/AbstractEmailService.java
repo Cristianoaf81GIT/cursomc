@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import com.cristianoaf81.cursomc.domain.Cliente;
 import com.cristianoaf81.cursomc.domain.Pedido;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,21 @@ public abstract class AbstractEmailService implements EmailService {
     mmh.setSentDate(new Date(System.currentTimeMillis()));
     mmh.setText(htmlFromTemplatePedido(obj), true);
     return mimeMessage;
+  }
+
+  @Override
+  public void sendNewPasswordEmail(Cliente cliente, String newPass) {
+    SimpleMailMessage sm = prepareNewPasswordEmail(cliente, newPass);
+    sendEmail(sm);
+  }
+
+  protected SimpleMailMessage prepareNewPasswordEmail(Cliente cliente, String newPass) {
+    SimpleMailMessage sm = new SimpleMailMessage();
+    sm.setTo(cliente.getEmail());
+    sm.setFrom(sender);
+    sm.setSubject("Solicitação de nova senha");
+    sm.setSentDate(new Date(System.currentTimeMillis()));
+    sm.setText("Nova Senha: " + newPass);
+    return sm;
   }
 }
