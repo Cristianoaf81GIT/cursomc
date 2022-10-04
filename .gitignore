@@ -37,3 +37,7 @@ build/
 
 ### vim ###
 *.swp
+
+*.properties
+!**/src/main/resources/example.properties
+!/src/main/resources/example.properties
