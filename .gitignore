@@ -39,3 +39,4 @@ build/
 *.swp
 
 *.properties
+src/main/resources/*.properties
