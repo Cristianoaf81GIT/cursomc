@@ -38,5 +38,5 @@ build/
 ### vim ###
 *.swp
 
-*.properties
-src/main/resources/*.properties
+env.properties
+/env.properties
