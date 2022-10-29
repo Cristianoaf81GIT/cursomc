@@ -3,6 +3,7 @@ package com.cristianoaf81.cursomc.services;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.net.URI;
 
 import javax.validation.ConstraintViolationException;
 
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cristianoaf81.cursomc.domain.Cidade;
 import com.cristianoaf81.cursomc.domain.Cliente;
@@ -28,6 +30,7 @@ import com.cristianoaf81.cursomc.security.UserSS;
 import com.cristianoaf81.cursomc.services.exceptions.AuthorizationException;
 import com.cristianoaf81.cursomc.services.exceptions.DataIntegrityException;
 import com.cristianoaf81.cursomc.services.exceptions.ObjectNotFoundException;
+import com.cristianoaf81.cursomc.services.S3Service;
 
 @Service
 public class ClienteService {
@@ -38,6 +41,8 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 	@Autowired
 	private BCryptPasswordEncoder pe;
+  @Autowired
+  private S3Service s3Service;  
 
 	public Cliente find(Integer id) {
 		UserSS user = UserService.authenticated();
@@ -119,4 +124,8 @@ public class ClienteService {
 		newObj.setCpfOuCnpj(newObj.getCpfOuCnpj());
 		newObj.setTipo(newObj.getTipo());
 	}
+
+  public URI uploadProfilePicture(MultipartFile multipartFile) {
+    return s3Service.uploadFile(multipartFile);    
+  }
 }
