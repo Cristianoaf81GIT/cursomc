@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.lang.RuntimeException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +20,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonClientException;
 
+import com.cristianoaf81.cursomc.services.exceptions.FileException;
 
 @Service
 public class S3Service {
@@ -41,7 +41,7 @@ public class S3Service {
       return uploadFile(is, fileName, contentType);    
     } catch(IOException ie) {
       ie.printStackTrace();
-      throw new RuntimeException("Erro de IO: " + ie.getMessage());
+      throw new FileException("Erro de IO: " + ie.getMessage());
     }
   }
 
@@ -56,7 +56,7 @@ public class S3Service {
       return s3Client.getUrl(bucketName, fileName).toURI();
     } catch(URISyntaxException e) {
       e.printStackTrace();
-      throw new RuntimeException("Erro ao converter URL para URI");
+      throw new FileException("Erro ao converter URL para URI");
     }
   }
 }
