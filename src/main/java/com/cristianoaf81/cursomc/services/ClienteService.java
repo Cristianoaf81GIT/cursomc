@@ -32,7 +32,7 @@ import com.cristianoaf81.cursomc.security.UserSS;
 import com.cristianoaf81.cursomc.services.exceptions.AuthorizationException;
 import com.cristianoaf81.cursomc.services.exceptions.DataIntegrityException;
 import com.cristianoaf81.cursomc.services.exceptions.ObjectNotFoundException;
-import com.cristianoaf81.cursomc.services.S3Service;
+// import com.cristianoaf81.cursomc.services.S3Service;
 
 @Service
 public class ClienteService {
@@ -49,6 +49,8 @@ public class ClienteService {
   private ImageService imageService;
   @Value("${img.prefix.client.profile}")
   private String prefix;
+  @Value("${img.profile.size}")
+  private Integer size;
 
 	public Cliente find(Integer id) {
 		UserSS user = UserService.authenticated();
@@ -139,6 +141,8 @@ public class ClienteService {
     
     BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
     String filename = prefix + user.getId() + ".jpg";
+    jpgImage = imageService.cropSquare(jpgImage);
+    jpgImage = imageService.resize(jpgImage, size);
 
     return s3Service.uploadFile(
         imageService.getInputStream(jpgImage,"jpg"),
