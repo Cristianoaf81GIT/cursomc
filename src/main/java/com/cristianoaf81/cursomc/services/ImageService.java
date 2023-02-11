@@ -27,7 +27,7 @@ public class ImageService {
     }
     
     try {
-      BufferedImage img = ImageIO.read(uploadedFile.getInputStream());
+      BufferedImage img = ImageIO.read(uploadedFile.getInputStream());      
       if ("png".equals(ext)) {
         img = pngToJpg(img); 
       } 
@@ -44,8 +44,8 @@ public class ImageService {
         img.getHeight(), 
         BufferedImage.TYPE_INT_RGB
     ); 
-
-    jpgImage.createGraphics().drawImage(img,0,0, Color.WHITE, null);
+    
+    jpgImage.createGraphics().drawImage(img,0,0, Color.WHITE, null);    
     return jpgImage;
   }
 
@@ -62,8 +62,8 @@ public class ImageService {
   public BufferedImage cropSquare(BufferedImage sourceImg) {
     int min = (
         sourceImg.getHeight() < sourceImg.getWidth()
-    ) ? sourceImg.getHeight() : sourceImg.getWidth(); 
-
+    ) ? sourceImg.getHeight() : sourceImg.getWidth();
+        
     return Scalr.crop(
       sourceImg,
       (sourceImg.getWidth()/2) - (min/2), 

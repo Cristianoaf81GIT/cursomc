@@ -46,6 +46,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
       Authentication auth) throws IOException, ServletException {
     String username = ((UserSS) auth.getPrincipal()).getUsername();
     String token = jwtUtil.generateToken(username);
+    // cria um header do tipo Authorization (header customizado)
     res.addHeader("Authorization", "Bearer " + token);
+    // adiciona permissao para expor o header Authorization para aplicacao
+    res.addHeader("access-control-expose-headers", "Authorization");
   }
 }

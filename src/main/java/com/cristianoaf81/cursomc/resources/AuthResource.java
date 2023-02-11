@@ -1,6 +1,6 @@
 package com.cristianoaf81.cursomc.resources;
 
-import org.springframework.web.bind.annotation.RequestMethod;
+// import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -33,6 +33,7 @@ public class AuthResource {
     UserSS user = UserService.authenticated();
     String token = this.jwtUtil.generateToken(user.getUsername());
     response.addHeader("Authorization", "Bearer " + token);
+    response.addHeader("access-control-expose-header", "Authorization"); // expoe o header Authorization
     return ResponseEntity.noContent().build();
   }
 
