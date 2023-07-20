@@ -1,7 +1,8 @@
 @user1 = "mariazinha@gmail.com" 
-Content-Length: 144
-@user2 = "deidecosta@gmail.com"
+Content-Length: 198
+@user2 = "deidecosta@gmail.com" HTTP/1.1
 
+###
 POST http://localhost:8081/login HTTP/1.1
 Host: localhost:8081
 Content-Type: application/json
@@ -10,3 +11,7 @@ Content-Type: application/json
   "email": {{user2}},
   "senha": "123"
 }
+
+###
+
+GET https://www.google.com.br HTTP/1.1
