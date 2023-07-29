@@ -1,0 +1,6 @@
+GET http://localhost:8081/estados HTTP/1.1
+Host: localhost:8081
+
+###
+GET http://localhost:8081/estados/1/cidades HTTP/1.1
+Host:  localhost:8081
